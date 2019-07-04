@@ -31,6 +31,17 @@ class userManager extends \connexion {
         return new user($donnees);
     }
 
+    public function userExist($email){
+
+        $q = $this->bdd->query("SELECT * FROM users WHERE email ='$email' ");
+        $donnees =  $q->fetch(\PDO::FETCH_ASSOC);
+        if($donnees){
+            return new user($donnees);
+        }
+
+
+    }
+
     public function getUsers(){
         $users = [];
 

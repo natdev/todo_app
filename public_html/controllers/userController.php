@@ -6,11 +6,12 @@ use Security\security;
 
 class userController{
     public function registerAction($twig){
+        $manageUser = new userManager();
 
         if($_POST){
-
+            extract($_POST);
             if($_POST['submit']){
-                extract($_POST);
+
                 if(empty($firstname)){
                     $error_firstname = "Ce champ ne peut pas être vide";
 
@@ -27,6 +28,8 @@ class userController{
                     $error_email = "Ce champ ne peut pas être vide";
                 }
 
+
+
                 if(empty($password)){
                     $error_password = "Ce champ ne peut pas être vide";
 
@@ -35,20 +38,32 @@ class userController{
                 if(!empty($password) && !empty($password_verif) && $password !== $password_verif){
                     $error_password = "Veuillez saisir des mots de passe similaire";
                 }
+
+                $userExist = $manageUser->userExist($email);
+
+                if(!$userExist){
+                    $createdAt = new DateTime();
+                    $password = password_hash($password,PASSWORD_DEFAULT);
+                    $user = new user([
+                        'lastname' => $lastname,
+                        'firstname'=> $firstname,
+                        'email'    => $email,
+                        'password' => $password,
+                        'createdAt' => $createdAt->format('Y-m-d H:i:s')
+                    ]);
+
+                    $manager = new userManager();
+                    $manager->addUser($user);
+                }
+                else{
+                    $error_email = "Cet utilisateur existe";
+                }
+
             }
 
-            $createdAt = new DateTime();
-            $password = password_hash($password,PASSWORD_DEFAULT);
-            $user = new user([
-                'lastname' => $lastname,
-                'firstname'=> $firstname,
-                'email'    => $email,
-                'password' => $password,
-                'createdAt' => $createdAt->format('Y-m-d H:i:s')
-            ]);
 
-            $manager = new userManager();
-            $manager->addUser($user);
+
+
         }
 
         echo $twig->render('users/register.html.twig',[

@@ -4,10 +4,13 @@ $(document).ready(function () {
         $(this).html('<input id="edit" type="text" name="edit_task" value="'+text+'">');
         $('#edit').focus();
         e.stopPropagation();
-        $('.editer').click(function (e) {
-            e.preventDefault();
-            let val = $('#edit').val();
-            let url = $(this).attr('href');
+   });
+
+    $('.editer').click(function (e) {
+        e.preventDefault();
+        let val = $('#edit').val();
+        let url = $(this).attr('href');
+        if(val){
             $(this).parent().parent().find('.task').html(val);
 
 
@@ -17,8 +20,9 @@ $(document).ready(function () {
                 method:'GET',
                 dataType:'text'
             });
+        }
 
 
-        });
-   });
+
+    });
 });
