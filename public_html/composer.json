@@ -1,0 +1,19 @@
+{
+    "name": "vender/todo_app",
+    "require": {
+        "twig/twig": "^2.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Entity\\": "entity",
+            "Manager\\": "models",
+            "Security\\": "security"
+        }
+    },
+    "authors": [
+        {
+            "name": "natdev",
+            "email": "dordonne.nathanael@gmail.com"
+        }
+    ]
+}

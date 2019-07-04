@@ -1,0 +1,31 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <form class="user_form" action="" method="POST">
+            <h1>Connexion</h1>
+            {% if error_verif %}
+                <div class="btn btn-danger">
+                    {{ error_verif }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {% if error_email %}
+                    <div class="btn btn-danger">
+                        {{ error_email }}
+                    </div>
+                {% endif %}
+                <input name="email" type="text" class="form-control" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+                {% if error_password %}
+                    <div class="btn btn-danger">
+                        {{ error_password }}
+                    </div>
+                {% endif %}
+                <input type="password" name="password" class="form-control" placeholder="votre mot de passe">
+            </div>
+            <input type="submit" class="btn btn-success" value="Se connecter">
+        </form>
+    </div>
+{% endblock %}

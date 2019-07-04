@@ -1,0 +1,26 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <h1 class="text-center">Ma todo liste</h1>
+            <div class="text-right mb-3">
+                <button class="btn btn-success btn-add">Ajouter une tâche</button>
+            </div>
+
+            <input id="input_tache" name="tache" type="text" class="form-control">
+            {% if id %}
+            <input id="id_user" type="hidden" name="id" value="{{ id }}">
+            {% endif %}
+            <div id="result">
+                <ul>
+                    {% for tache in taches %}
+                        <li>{{ tache.tache }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
