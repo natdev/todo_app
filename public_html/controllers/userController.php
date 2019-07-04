@@ -45,15 +45,17 @@ class userController{
                     $createdAt = new DateTime();
                     $password = password_hash($password,PASSWORD_DEFAULT);
                     $user = new user([
-                        'lastname' => $lastname,
-                        'firstname'=> $firstname,
-                        'email'    => $email,
-                        'password' => $password,
+                        'lastname' => htmlspecialchars($lastname),
+                        'firstname'=> htmlspecialchars($firstname),
+                        'email'    => htmlspecialchars($email),
+                        'password' => htmlspecialchars($password),
                         'createdAt' => $createdAt->format('Y-m-d H:i:s')
                     ]);
 
                     $manager = new userManager();
                     $manager->addUser($user);
+
+                    header('Location: /user/login');
                 }
                 else{
                     $error_email = "Cet utilisateur existe";
@@ -92,7 +94,8 @@ class userController{
                 $error_password = "Ce champ ne peut pas être vide";
 
             }
-
+            $email = htmlspecialchars($email);
+            $password = htmlspecialchars($password);
             $verification =  new security();
             $verify = $verification->verification($email, $password);
 

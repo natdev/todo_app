@@ -70,7 +70,8 @@ class indexController {
         if($_GET) {
             extract($_GET);
             if (isset($id_task) && isset($val)) {
-
+                $id_task = htmlspecialchars($id_task);
+                $val = htmlspecialchars($val);
 
 
                 $manager = new taskManager();
@@ -88,7 +89,8 @@ class indexController {
         if($_GET) {
             extract($_GET);
             if (isset($id_task) && isset($id)) {
-
+                $id_task = htmlspecialchars($id_task);
+                $id = htmlspecialchars($id);
 
 
                 $manager = new taskManager();
