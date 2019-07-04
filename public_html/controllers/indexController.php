@@ -19,18 +19,20 @@ class indexController {
 
             if(isset($id)){
                 $id = $id;
+
+                $manager = new taskManager();
+                $taches = $manager->getTasksUser($id);
             }
         }
 
-        $manager = new taskManager();
-        $taches = $manager->getTasks();
+
 
         echo $twig->render('index.html.twig',[
             'titre'=> 'hello world',
             'lastname' => (isset($lastname) ? $lastname : null),
             'firstname' => (isset($firstname) ? $firstname : null),
             'id' => (isset($id) ? $id : null),
-            'taches' => $taches
+            'taches' => (isset($taches) ? $taches : null)
             ]);
     }
 
@@ -52,11 +54,54 @@ class indexController {
             }
 
 
+            $manager = new taskManager();
+            $taches = $manager->getTasksUser($id);
+        }
+
+
+
+
+
+        echo $twig->render('taches.html.twig', ['taches' => $taches]);
+    }
+
+    public function updateAction(){
+
+        if($_GET) {
+            extract($_GET);
+            if (isset($id_task) && isset($val)) {
+
+
+
+                $manager = new taskManager();
+                $tache = $manager->getTask($id_task);
+                $tache->setTache($val);
+                $manager->updateTask($tache);
+            }
 
         }
-        $manager = new taskManager();
-        $taches = $manager->getTasksUser();
-        
+
+    }
+
+    public function deleteAction($twig){
+
+        if($_GET) {
+            extract($_GET);
+            if (isset($id_task) && isset($id)) {
+
+
+
+                $manager = new taskManager();
+                $tache = $manager->getTask($id_task);
+                $manager->deleteTask($tache);
+            }
+
+
+            $manager = new taskManager();
+            $taches = $manager->getTasksUser($id);
+        }
+
+
 
 
 

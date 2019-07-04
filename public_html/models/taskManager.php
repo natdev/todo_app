@@ -22,9 +22,9 @@ class taskManager extends \connexion {
     public function getTask($id){
         $id = (int) $id;
 
-        $q = $this->bdd->query('SELECT tache FROM taches WHERE id = '.$id);
+        $q = $this->bdd->query('SELECT * FROM taches WHERE id = '.$id);
         $donnees =  $q->fetch(\PDO::FETCH_ASSOC);
-        return new tache($donnees);
+        return new task($donnees);
     }
 
     public function getTasks(){

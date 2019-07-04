@@ -1,5 +1,5 @@
-<ul>
- {% for tache in taches %}
-  <li>{{ tache.tache }}</li>
- {% endfor %}
+<ul class="list-group mt-3">
+  {% for tache in taches %}
+    <li class="list-group-item d-flex justify-content-between"><div class="task">{{ tache.tache }}</div> <div class="action"><a href="index/update/?id_task={{ tache.id }}" class="editer">Editer</a><a class="delete text-danger" href="index/delete/?id_task={{ tache.id }}&id={{ id }}"> Supprimer</a></div></li>
+  {% endfor %}
 </ul>

@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg bg-dark">
     <ul class="navbar-nav ml-auto">
         {% if id %}
-            <span>{{ lastname }} {{ firstname }}</span>
+            <li class="nav-item"><a class="nav-link text-white" href="#">{{ lastname }} {{ firstname }}</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="../user/logout">Se déconnecter</a></li>
         {% else %}
         <li class="nav-item"><a class="nav-link text-white" href="../user/register">Inscription</a></li>
@@ -27,5 +27,7 @@
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap.bundle.js"></script>
 <script src="../js/add-task.js"></script>
+<script src="../js/delete-task.js"></script>
+<script src="../js/edit-task.js"></script>
 </body>
 </html>
