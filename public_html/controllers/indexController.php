@@ -53,16 +53,23 @@ class indexController {
                 $manager->addTask($tache);
             }
 
-
-            $manager = new taskManager();
-            $taches = $manager->getTasksUser($id);
+            if(isset($id)){
+                $manager = new taskManager();
+                $taches = $manager->getTasksUser($id);
+            }
+            else{
+                echo "<h3 class=\"text-center text-success\">Vous devez être connecté pour ajouter une tâche</h3>";
+            }
         }
 
 
 
 
 
-        echo $twig->render('taches.html.twig', ['taches' => $taches]);
+        echo $twig->render('taches.html.twig', [
+            'taches' =>(isset($taches) ? $taches : null),
+            'id'    => (isset($id) ? $id : null)
+        ]);
     }
 
     public function updateAction(){

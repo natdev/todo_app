@@ -1,5 +1,5 @@
 $(document).ready(function(){
-$('.delete').click(function(e){
+$('body').on('click','.delete',function(e){
     e.preventDefault();
     let url = $(this).attr('href');
 
