@@ -5,3 +5,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+@media screen and (max-width: 1080px) {
+    .user_form{
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    ul.navbar-nav {
+        flex-direction: row;
+    }
+
+    ul.navbar-nav li {
+        flex-direction: row;
+        padding-right:  5px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .user_form{
+        width: 80%;
+    }
+}
